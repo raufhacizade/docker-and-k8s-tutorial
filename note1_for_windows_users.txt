@@ -1,0 +1,9 @@
+In the upcoming lecture, we will be running a command to create a new image using docker commit with this command:
+
+docker commit -c 'CMD ["redis-server"]' CONTAINERID
+
+If you are a Windows user you may get an error like "/bin/sh: [redis-server]: not found" or "No Such Container"
+
+Instead, try running the command like this:
+
+docker commit -c "CMD 'redis-server'" CONTAINERID
