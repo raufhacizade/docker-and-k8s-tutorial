@@ -1,0 +1,5 @@
+docker run myimage -> docker-compose up
+
+docker build .
+       +            -> docker-compose up --build
+docker run myimage 

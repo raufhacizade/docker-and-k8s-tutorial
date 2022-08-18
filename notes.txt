@@ -1,0 +1,16 @@
+docker ps   # list running containers
+docker ps --all    # list all containers
+docker stop <container_id>  # stop the container
+docker run -d redis     # will started up a new container but it'll executed in the background(as an deamon process)
+
+--DOCKER COMPOSE 
+
+docker run myimage -> docker-compose up
+
+docker build .
+       +            -> docker-compose up --build
+docker run myimage 
+
+docker-compose up -d    # launch containers in background
+docker-compose down    # stop containers
+docker-compose ps   # list the running containers based on docker-compose.yml file
