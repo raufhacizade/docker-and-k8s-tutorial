@@ -1,0 +1,44 @@
+# command to build images from custom dockerfile
+docker build -f Dockerfile.dev .
+
+#                        put a bookmark on the
+#                         node_modules folder
+docker run -p 3000:3000  -v /app/node_modules  -v $(pwd):/app <image_id>
+#                                             Map the pwd into
+#                                             the '/app' folder   
+# $(pwd) -- it means present working directory
+# $(pwd):/app -- ':' the colon symbol means that map up folder inside the container to a folder outside of container
+# when we not use the colon symbol, then dokcer volume will make a placeholder for the folder is inside the container and not map it up against anything
+
+# updated version for WSL2
+docker run -it -p 3000:3000 -v /app/node_modules -v ~/frontend:/app USERNAME:frontend
+docker run -it -p 3000:3000 -v /app/node_modules -v /home/USER/frontend:/app USERNAME:frontend
+# working!
+docker run -it -p 3000:3000 -v /home/node/app/node_modules -v ~/frontend:/home/node/app hrauf:frontend
+
+
+******************************** live updating tests ********************************
+# if we try following commands to running the test inside of container,
+# we can't access to update test cases inside of container.
+# Because there is volumes mapping for the contaiers
+a) docker run -it hrauf:frontend npm run test
+b)
+    b.1 docker run -it hrauf:frontend
+    b.2 docker exec -it <docker_id> npm run test # (just re-use existing contaier)
+
+# If we run following commands or docker_compose.yml file which has volumes mapping within instructions,
+# then can update test cases inside of container by updating local files
+a) docker run -it -p 3000:3000 -v /home/node/app/node_modules -v ~/frontend:/home/node/app hrauf:frontend npm run test
+b)
+    b.1 docker run -it -p 3000:3000 -v /home/node/app/node_modules -v ~/frontend:/home/node/app hrauf:fronten
+    b.2 docker exec -it <docker_id> npm run test  # (just re-use existing contaier)
+c) 
+    c.1 docker compose up
+    c.2 docker ps # get the running docker_id
+    c.3 docker exec -it <docker_id> npm run test  # (just re-use existing contaier)
+# by these approach a,b,c (having same or single container for testing and developing, then running the 'exec' command),
+# we can manipulate the running test suite by shortcuts   
+d) Write other service for testing within docker_compose instructions, then use the docker_composer command (it's the recomended solution)
+but the drowback of trhis approach, you can't manipulate the running test suite by shortcuts after using the 'attach' command.
+
+***************************************************************************************

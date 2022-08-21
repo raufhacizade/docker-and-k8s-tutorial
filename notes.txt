@@ -1,16 +1,37 @@
-docker ps   # list running containers
-docker ps --all    # list all containers
-docker stop <container_id>  # stop the container
-docker run -d redis     # will started up a new container but it'll executed in the background(as an deamon process)
+# list running containers
+docker ps
 
---DOCKER COMPOSE 
+# list all containers
+docker ps --all
 
+# stop the container
+docker stop <container_id>
+
+# will started up a new container but it'll executed in the background(as an deamon process)
+docker run -d <image-name>
+
+# build image from Dockerfile by tagging the image. By default, the version is the 'latest'
+docker build -t <docker_id>/<repo,project_name>:version .
+
+# command to build images from custom dockerfile
+docker build -f Dockerfile.dev
+docker build -f Dockerfile.dev -t <docker_id>/<repo,project_name>:version .
+
+
+******************** DOCKER COMPOSE ******************************
 docker run myimage -> docker-compose up
 
 docker build .
        +            -> docker-compose up --build
 docker run myimage 
 
-docker-compose up -d    # launch containers in background
-docker-compose down    # stop containers
-docker-compose ps   # list the running containers based on docker-compose.yml file
+# launch containers in background
+docker-compose up -d 
+
+# stop containers
+docker-compose down
+
+# list the running containers based on docker-compose.yml file
+docker-compose ps
+
+*******************************************************************
