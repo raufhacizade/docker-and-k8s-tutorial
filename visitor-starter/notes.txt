@@ -3,3 +3,7 @@ docker run myimage -> docker-compose up
 docker build .
        +            -> docker-compose up --build
 docker run myimage 
+
+docker-compose up -d    # launch containers in background
+docker-compose down    # stop containers
+docker-compose ps   # list the running containers based on docker-compose.yml file

@@ -9,6 +9,7 @@ function App() {
         <p>
           Another dummy Hello!!!
           <br/><code>src/App.js</code>
+          <br/>a dummy update for the feature1 branch
         </p>
         <a
           className="App-link"

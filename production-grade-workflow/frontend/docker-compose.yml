@@ -1,20 +1,8 @@
 version: '3'
-services: 
-    react-app:
-        build: 
-            context: . # shows where docker will extract all files for the image
-            dockerfile: Dockerfile.dev
-        ports:
-            - "3000:3000"
-        volumes:
-            # - /home/node/app/dummy_test_file
-            - /home/node/app/node_modules
-            - .:/home/node/app
-    tests:
-        build: 
-            context: . # shows where docker will extract all files for the image
-            dockerfile: Dockerfile.dev
-        volumes:
-            - /home/node/app/node_modules
-            - .:/home/node/app
-        command: ["npm", "run", "test"] # ovverride default command, in this case default command is "npm run start"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'

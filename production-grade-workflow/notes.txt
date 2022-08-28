@@ -42,3 +42,12 @@ d) Write other service for testing within docker_compose instructions, then use 
 but the drowback of trhis approach, you can't manipulate the running test suite by shortcuts after using the 'attach' command.
 
 ***************************************************************************************
+explorer.exe . 
+
+docker run hrauf/web:dev npm run test -- --coverage
+docker run -e CI=true hrauf/web:dev npm run test
+
+# using docker compose by flag
+docker-compose -f docker-compose-dev.yml up
+docker-compose -f docker-compose-dev.yml up --build
+docker-compose -f docker-compose-dev.yml down
